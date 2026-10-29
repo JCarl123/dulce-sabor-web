@@ -1,18 +1,28 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for, flash
-import pyodbc
+import psycopg2
+from flask import Flask, render_template, request, redirect, url_for
 
 # Inicializar la aplicación Flask
 app = Flask(__name__)
 
 def obtener_conexion():
-    conexion = pyodbc.connect(
-        'DRIVER={ODBC Driver 17 for SQL Server};'
-        'SERVER=localhost\\SQLEXPRESS;'
-        'DATABASE=DulceSaborDB;'  # Reemplaza con el nombre real de tu base de datos si es diferente
-        'Trusted_connection=yes;'
-    )
-    return conexion
+    # Render proporciona automáticamente la URL de la base de datos en las variables de entorno
+    database_url = os.environ.get("DATABASE_URL")
+    
+    if database_url:
+        # Conexión en la nube (Render / PostgreSQL)
+        return psycopg2.connect(database_url)
+    else:
+        # (Opcional) Si quieres probar localmente con otra cadena o dejar un respaldo
+        # Para PostgreSQL local, por ejemplo:
+        return psycopg2.connect(
+            dbname="dulcesabor",
+            user="postgres",
+            password="tu_password",
+            host="localhost",
+            port="5432"
+        )
+
 
 # Ruta principal (Controlador)
 @app.route('/')
