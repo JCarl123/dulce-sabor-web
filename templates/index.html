@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PANADERIA Y PASTELERIA DULCE SABOR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+  <link rel="stylesheet" href="./static/css/estilo.css">
+  <link rel="stylesheet" href="./static/css/nav-mobile-fix.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       SECCIÓN INICIO — NAVBAR + HERO
+  ════════════════════════════════════════ -->
+  <section id="inicio">
+
+    <header id="main-header">
+      <div class="contenido-header">
+
+        <div class="logo">
+          <h1>PANADERIA Y PASTELERIA DULCE SABOR</h1>
+        </div>
+
+        <!-- ══ NAV ESTÁNDAR ══ -->
+        <nav id="nav">
+          <ul>
+
+            <li>
+              <a href="{{ url_for('home') }}" onclick="seleccionar()" class="active">
+                <i class="fa-solid fa-house"></i>
+                <span>Inicio</span>
+              </a>
+            </li>
+
+            
+            <li><a href="menu.html"><i class="fa-solid fa-cake-candles"></i> <span>Menú</span></a></li>
+            <li><a href="ventas.html"><i class="fa-solid fa-receipt"></i> <span>Ventas</span></a></li>
+            <li><a href="compras.html"><i class="fa-solid fa-truck-ramp-box"></i> <span>Compras</span></a></li>
+            <li><a href="movimientos.html"><i class="fa-solid fa-arrows-rotate"></i> <span>Inventario</span></a></li>
+            <li><a href="clientes.html"><i class="fa-solid fa-users"></i> <span>Clientes</span></a></li>
+            <li><a href="proveedores.html"><i class="fa-solid fa-truck-field"></i> <span>Proveedores</span></a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-responsive" id="bar" onclick="mostrarOcultarMenu()" aria-label="Menú">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- HERO / CARRUSEL con Ken Burns + overlay de contenido -->
+    <div class="carrusel">
+
+      <div class="hero-accent-line"></div>
+
+      <div class="gallery js-flickity"
+            data-flickity-options='{"wrapAround":true,"pageDots":true,"autoPlay":5000,"prevNextButtons":false,"fade":true}'>
+        <div class="gallery-cell">
+          <img src="static/img/img1.jfif" alt="Pastelería y Panadería Dulce Sabor — tradición y frescura">
+        </div>
+        <div class="gallery-cell">
+          <img src="static/img/img2.jfif" alt="Pan artesanal recién horneado">
+        </div>
+        <div class="gallery-cell">
+          <img src="static/img/img3.jfif" alt="Tortas y postres finos para toda ocasión">
+        </div>
+      </div>
+
+      <div class="info">
+        <div class="hero-eyebrow">Repostería fina y panadería artesanal</div>
+
+        <h2 class="hero-title">
+          Pan recién horneado,<br>
+          pasteles con <span class="accent">amor</span><br>
+          y dulzura única.
+        </h2>
+
+        <p class="hero-desc">
+          Variedad en panadería tradicional, tortas personalizadas y postres artesanales hechos cada día para endulzar tus momentos especiales.
+        </p>
+
+        <div class="hero-ctas">
+          <a href="menu.html" class="btn-gold">
+            <i class="fa-solid fa-cake-candles"></i> Ver el Menú
+          </a>
+          <a href="#sucursal" class="btn-outline">
+            Nuestras Sucursales
+          </a>
+        </div>
+
+      </div>
+
+      <div class="scroll-indicator" aria-hidden="true">
+        <div class="scroll-line"></div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       SECCIÓN VIDEO
+  ════════════════════════════════════════ -->
+  <section id="video-presentacion">
+    <div class="video-inner">
+
+      <div class="video-copy">
+        <div class="section-eyebrow">Video de presentación</div>
+        <h2 class="video-heading">
+          Dulzor y tradición en cada <em>receta.</em>
+        </h2>
+        <p class="video-desc">
+          Descubre cómo se vive la experiencia Dulce Sabor: pan horneado cada mañana, pasteles elaborados con ingredientes frescos y el sabor inconfundible que endulza tus momentos especiales.
+        </p>
+        <ul class="video-features" aria-label="Características">
+          <li>Panadería artesanal horneada al día</li>
+          <li>Pastelería fina con ingredientes seleccionados</li>
+          <li>Disponible en nuestras sucursales</li>
+        </ul>
+        <button class="btn-gold video-trigger-btn" id="videoPlayBtn" aria-label="Reproducir video de presentación">
+          <i class="fa-solid fa-circle-play"></i> Reproducir video
+        </button>
+      </div>
+
+      <div class="video-divider" aria-hidden="true"></div>
+
+      <div class="phone-frame" aria-label="Video vertical 9:16">
+        <div class="phone-body">
+          <div class="phone-notch">
+            <div class="phone-camera"></div>
+          </div>
+          <div class="phone-screen">
+            <video
+              id="presentacion-video"
+              src="./static/videos/video.mp4"
+              muted
+              playsinline
+              loop
+              preload="none"
+              poster="static/img/ini.png"
+              aria-label="Video de presentación Panadería y Pastelería Dulce Sabor"
+            ></video>
+            <div class="phone-play-overlay" id="phonePlayOverlay" aria-hidden="true">
+              <i class="fa-solid fa-play"></i>
+            </div>
+          </div>
+          <div class="phone-chin">
+            <div class="phone-home-bar"></div>
+          </div>
+        </div>
+        <p class="phone-caption">Video oficial</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       SECCIÓN SUCURSALES
+  ════════════════════════════════════════ -->
+  <section id="sucursal">
+
+    <div class="sucursal-header">
+      <div class="section-eyebrow">Dónde encontrarnos</div>
+      <h2 class="sucursal-title">Nuestras <em>sucursales</em></h2>
+      <p class="sucursal-subtitle">Visítanos en nuestras sucursales de Dulce Sabor para disfrutar de pan recién horneado y repostería fina</p>
+    </div>
+
+    <div class="sucursal-grid">
+  
+      <article class="suc-card">
+        <div class="suc-card-img">
+          <img src="static/img/map.png" alt="Sucursal Central Dulce Sabor">
+          <div class="suc-card-badge">Central</div>
+          <div class="suc-card-num">01</div>
+        </div>
+        <div class="suc-card-body">
+          <h3 class="suc-card-name">Sucursal Central</h3>
+          <address class="suc-card-addr">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            Calle Colón N.° 463, La Paz
+          </address>
+          <p class="suc-card-phone">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <a href="tel:78073688">78073688</a>
+          </p>
+        </div>
+        <div class="suc-card-footer">
+          <a href="https://maps.app.goo.gl/oMMpxQtqbDgzqy3C8"
+             target="_blank" rel="noopener" class="suc-map-link">
+            <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+            Ver en mapa
+          </a>
+          <span class="suc-hours">Lun–Dom</span>
+        </div>
+      </article>
+  
+      <article class="suc-card suc-card--featured">
+        <div class="suc-card-img">
+          <img src="static/img/map.png" alt="Sucursal Calacoto Dulce Sabor">
+          <div class="suc-card-badge">Calacoto</div>
+          <div class="suc-card-num">02</div>
+        </div>
+        <div class="suc-card-body">
+          <h3 class="suc-card-name">Sucursal Calacoto</h3>
+          <address class="suc-card-addr">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            Calle 23 N.° 7727, Calacoto
+          </address>
+          <p class="suc-card-phone">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <a href="tel:78073688">78073688</a>
+          </p>
+        </div>
+        <div class="suc-card-footer">
+          <a href="https://maps.app.goo.gl/oMMpxQtqbDgzqy3C8"
+             target="_blank" rel="noopener" class="suc-map-link">
+            <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+            Ver en mapa
+          </a>
+          <span class="suc-hours">Lun–Dom</span>
+        </div>
+      </article>
+  
+      <article class="suc-card">
+        <div class="suc-card-img">
+          <img src="static/img/map.png" alt="Sucursal Landaeta Dulce Sabor">
+          <div class="suc-card-badge">Landaeta</div>
+          <div class="suc-card-num">03</div>
+        </div>
+        <div class="suc-card-body">
+          <h3 class="suc-card-name">Sucursal Landaeta</h3>
+          <address class="suc-card-addr">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            Av. Landaeta N.° 1041, La Paz
+          </address>
+          <p class="suc-card-phone">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <a href="tel:78073688">78073688</a>
+          </p>
+        </div>
+        <div class="suc-card-footer">
+          <a href="https://maps.app.goo.gl/oMMpxQtqbDgzqy3C8"
+             target="_blank" rel="noopener" class="suc-map-link">
+            <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+            Ver en mapa
+          </a>
+          <span class="suc-hours">Lun–Dom</span>
+        </div>
+      </article>
+  
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       FOOTER / CONTACTO
+  ════════════════════════════════════════ -->
+  <footer id="contacto">
+
+    <div class="footer-inner">
+
+      <div class="footer-col footer-col--brand">
+        <div class="footer-brand-name">DULCE SABOR</div>
+        <div class="footer-gold-bar"></div>
+        <p class="footer-brand-desc">
+          Panadería artesanal y repostería fina. Tradición, frescura y dulzura en cada receta desde La Paz.
+        </p>
+        <div class="footer-social" aria-label="Redes sociales">
+          <a href="https://www.facebook.com/share/16fPJ4ueHh/" target="_blank"
+             rel="noopener" class="social-btn" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="https://www.instagram.com/"
+             target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://www.tiktok.com/"
+             target="_blank" rel="noopener" class="social-btn" aria-label="TikTok">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a href="https://maps.app.goo.gl/oMMpxQtqbDgzqy3C8"
+             target="_blank" rel="noopener" class="social-btn" aria-label="Ubicación en Google Maps">
+            <i class="fa-solid fa-map-location-dot"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-col-title">Navegación</h3>
+        <nav aria-label="Navegación del pie de página">
+          <a href="#inicio" class="footer-link">Inicio</a>
+          <a href="menu.html" class="footer-link">Menú</a>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-col-title">Contacto</h3>
+        
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          <div>
+            Calle Colón N.° 463<br>
+            Calle 23 N.° 7727<br>
+            Av. Landaeta N.° 1041
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-globe" aria-hidden="true"></i>
+          <span>La Paz, Bolivia</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">
+        © 2026 Panadería y Pastelería Dulce Sabor · Todos los derechos reservados
+      </p>
+      <p class="footer-badge">HECHO EN BOLIVIA 🇧🇴</p>
+    </div>
+
+  </footer>
+
+
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  <script src="./static/js/script.js"></script>
+  <script src="./static/js/nav-dropdown-fix.js"></script>
+</body>
+</html>

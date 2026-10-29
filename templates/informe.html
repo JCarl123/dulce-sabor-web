@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informe Técnico — Sistema Integral DULCE SABOR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="./static/css/estilo.css">
+  <link rel="stylesheet" href="./static/css/nav-mobile-fix.css">
+</head>
+<body>
+
+  <div class="doc-progress-bar" id="docProgressBar" role="progressbar"
+       aria-label="Progreso de lectura" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+    <div class="doc-progress-bar__fill" id="docProgressFill"></div>
+  </div>
+
+  <section id="inicio">
+    <header id="main-header">
+      <div class="contenido-header">
+        <div class="logo">
+          <h1>PANADERIA Y PASTELERIA DULCE SABOR</h1>
+        </div>
+        <nav id="nav">
+          <ul>
+            <li>
+              <a href="{{ url_for('home') }}">
+                <i class="fa-solid fa-house"></i>
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li class="dropdown" class="active">
+              <a href="informe.html"class="dropdown-toggle active">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Informe</span>
+                <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="informe.html#generalidades">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>I. Generalidades</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="informe.html#marco-teorico">
+                    <i class="fa-solid fa-flask"></i>
+                    <span>Marco Teórico</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="informe.html#modelo-ambiental">
+                    <i class="fa-solid fa-earth-americas"></i>
+                    <span>Modelo Ambiental</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="informe.html#modelo-comportamiento">
+                    <i class="fa-solid fa-sitemap"></i>
+                    <span>Modelo de Comportamiento</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="informe.html#modelo-objetos">
+                    <i class="fa-solid fa-diagram-project"></i>
+                    <span>Modelo OO</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li><a href="menu.html"><i class="fa-solid fa-cake-candles"></i> <span>Menú</span></a></li>
+            <li><a href="ventas.html"><i class="fa-solid fa-receipt"></i> <span>Ventas</span></a></li>
+            <li><a href="compras.html"><i class="fa-solid fa-truck-ramp-box"></i> <span>Compras</span></a></li>
+            <li><a href="movimientos.html"><i class="fa-solid fa-arrows-rotate"></i> <span>Inventario</span></a></li>
+            <li><a href="clientes.html"><i class="fa-solid fa-users"></i> <span>Clientes</span></a></li>
+            <li><a href="proveedores.html"><i class="fa-solid fa-truck-field"></i> <span>Proveedores</span></a></li>
+          </ul>
+        </nav>
+        <div class="nav-responsive" id="bar" onclick="mostrarOcultarMenu()" aria-label="Menú">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </div>
+    </header>
+  </section>
+
+  <div class="informe-hero">
+    <div class="informe-hero__glow" aria-hidden="true"></div>
+    <div class="informe-hero__content">
+      <div class="informe-hero__kicker">
+        <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+        Documento Académico · UMSA · Informática · 2026
+      </div>
+      <h1 class="informe-hero__title">
+        Sistema de Información Integral para la<br>
+        <em>Gestión Comercial</em> de Panaderia Y Pasteleria Dulce Sabor
+      </h1>
+      <p class="informe-hero__sub">
+        Análisis y Diseño de Sistemas · Paradigma Estructurado &amp; Orientado a Objetos
+      </p>
+      <div class="informe-hero__meta">
+        <span class="informe-meta-pill">
+          <i class="fa-solid fa-university"></i>
+          Universidad Mayor de San Andrés
+        </span>
+        <span class="informe-meta-pill">
+          <i class="fa-solid fa-layer-group"></i>
+          Carrera de Informática
+        </span>
+        <span class="informe-meta-pill">
+          <i class="fa-solid fa-calendar-days"></i>
+          La Paz, Bolivia — 2026
+        </span>
+      </div>
+
+      <!-- AUTORES DEL PROYECTO -->
+      <div class="informe-autores">
+        <div class="informe-autores__label">
+          <i class="fa-solid fa-users"></i>
+          Equipo de Desarrollo
+        </div>
+        <div class="informe-autores__grid">
+          <div class="informe-autor-chip">
+            <span class="informe-autor-num">01</span>
+            Luis Daniel Álvarez Quispe
+          </div>
+          <div class="informe-autor-chip">
+            <span class="informe-autor-num">02</span>
+            Juan Carlos Caritas Rocha 
+          </div>
+          <div class="informe-autor-chip">
+            <span class="informe-autor-num">03</span>
+            Cristhian Coarite Mamani
+          </div>
+          <div class="informe-autor-chip">
+            <span class="informe-autor-num">04</span>
+            Alejandro Angel Cruz Chacon
+          </div>
+          <div class="informe-autor-chip">
+            <span class="informe-autor-num">05</span>
+            Noelia Raquel Illanes Quilla
+          </div>
+          <div class="informe-autor-chip">
+            <span class="informe-autor-num">06</span>
+            Fernando Johsua Illanes Escobar
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-layout">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="doc-sidebar" id="docSidebar" aria-label="Tabla de contenidos">
+
+      <button class="doc-sidebar__mobile-toggle" id="sidebarToggle" aria-expanded="true"
+              aria-controls="docSidebar">
+        <span><i class="fa-solid fa-list-ul" style="color:var(--gold-400);margin-right:6px"></i>Tabla de contenidos</span>
+        <i class="fa-solid fa-chevron-up" id="sidebarToggleIcon" style="font-size:0.7rem;color:var(--gold-400)"></i>
+      </button>
+
+      <div class="doc-sidebar__label">
+        <i class="fa-solid fa-list-ul"></i>
+        Contenidos
+      </div>
+
+      <!-- Cap I -->
+      <div class="doc-toc-chapter toc-open" id="toc-ch1">
+        <a href="#generalidades" class="toc-active">
+          <span class="toc-num">I</span>
+          Generalidades
+        </a>
+        <ul class="doc-toc-section">
+          <li><a href="#introduccion">1. Introducción</a></li>
+          <li><a href="#antecedentes">2. Antecedentes</a></li>
+          <li><a href="#planteamiento">3. Planteamiento del Problema</a></li>
+          <li><a href="#arbol-problemas">4. Árbol de Problemas</a></li>
+          <li><a href="#formulacion">5. Formulación del Problema</a></li>
+          <li><a href="#proposito">6. Propósito del Estudio</a></li>
+          <li><a href="#metodo">7. Método e Instrumentos</a></li>
+          <li><a href="#justificacion">8. Justificacion y Alcance</a></li>
+          <li><a href="#planificacion">9. Planificación</a></li>
+        </ul>
+      </div>
+
+      <!-- Cap II -->
+      <div class="doc-toc-chapter" id="toc-ch2">
+        <a href="#marco-teorico">
+          <span class="toc-num">II</span>
+          Análisis Estructurado
+        </a>
+        <ul class="doc-toc-section">
+          <li><a href="#modelo-ambiental">Modelo Ambiental</a></li>
+          <li><a href="#modelo-comportamiento">Modelo de Comportamiento</a></li>
+        </ul>
+      </div>
+
+      <!-- Cap III -->
+      <div class="doc-toc-chapter" id="toc-ch3">
+        <a href="#modelo-objetos">
+          <span class="toc-num">III</span>
+          Análisis OO
+        </a>
+        <ul class="doc-toc-section">
+          <li><a href="#modelo-objetos">Paradigma OO</a></li>
+          <li><a href="#clases-oo">Diagrama de Clases</a></li>
+        </ul>
+      </div>
+
+      <div class="doc-sidebar__divider"></div>
+
+      <a href="index.html" class="doc-sidebar__back">
+        <i class="fa-solid fa-arrow-left"></i>
+        Volver al Inicio
+      </a>
+
+    </aside>
+
+    <!-- ── CONTENIDO ── -->
+    <main class="doc-content" id="docContent">
+
+      <!-- ══════════════════════════════════════════
+           CAPÍTULO I — GENERALIDADES
+      ══════════════════════════════════════════ -->
+      <article class="doc-chapter" id="generalidades">
+
+        <div class="doc-chapter-header">
+          <div class="doc-chapter-eyebrow">
+            <i class="fa-solid fa-circle-info"></i>
+            Capítulo I
+          </div>
+          <h2 class="doc-chapter-title">
+            <span class="doc-chapter-num">I.</span>
+            Generalidades y Marco Teórico
+          </h2>
+          <div class="doc-chapter-rule"></div>
+        </div>
+
+        <div class="doc-body">
+
+          <h3 class="doc-h2" id="introduccion">
+            <span class="doc-num">1</span>
+            Introducción
+          </h3>
+
+          <p>La Panadería y Pastelería Dulce Sabor comercializa productos elaborados
+          diariamente, como panes, tortas, masitas, pasteles, bebidas e insumos complementarios.
+          En un negocio de esta naturaleza, la disponibilidad real de productos, el registro
+          oportuno de las ventas y el seguimiento de materias primas influyen directamente en la
+          atención al cliente y en la rentabilidad. Cuando estas actividades se registran en
+          cuadernos, hojas sueltas o planillas independientes, aumentan los riesgos de error,
+          duplicidad y pérdida de información.</p>
+
+          <p>El presente informe propone el análisis y diseño de un Sistema de Gestión de Ventas e
+          Inventario para Dulce Sabor. La propuesta se desarrolla desde dos enfoques
+          complementarios: el análisis estructurado, que describe procesos y flujos de datos, y el
+          análisis orientado a objetos, que modela actores, casos de uso, clases y comportamiento
+          del sistema. El resultado esperado es una base documentada para construir un sistema
+          que apoye el control operativo del negocio.</p>
+
+          <h3 class="doc-h2" id="antecedentes">
+            <span class="doc-num">2</span>
+            Antecedentes
+          </h3>
+
+          <p>Las pequeñas panaderías suelen iniciar sus operaciones con controles manuales debido a la facilidad y bajo costo de ese método. Sin embargo, el número de productos, variantes de tamaño, precios, promociones y pedidos crece con la actividad comercial. La información deja de ser manejable de forma aislada y se vuelve necesaria una herramienta que conserve datos consistentes y permita consultarlos en el momento de la venta.</p>
+
+          <p>Los sistemas de punto de venta e inventario integran procesos que antes se realizaban por separado. Al registrar una venta, el sistema puede emitir un comprobante, calcular el total y descontar automáticamente las existencias. A la vez, el administrador puede consultar los productos con poca disponibilidad, analizar ventas por período y tomar decisiones de reposición con información actualizada.</p>
+
+          <h3 class="doc-h2" id="planteamiento">
+            <span class="doc-num">3</span>
+            Planteamiento del Problema
+          </h3>
+
+          <p>“Dulce Sabor” requiere registrar ventas diarias y mantener la disponibilidad de sus productos. Actualmente, cuando el control se realiza de forma manual o con registros no integrados, el cajero puede vender productos cuya existencia ya se agotó, el administrador debe contar unidades físicamente para conocer el stock y los reportes de ventas requieren consolidar información al finalizar la jornada. Estas situaciones generan demoras, errores de cálculo y decisiones basadas en datos incompletos.</p>
+
+          <p>La falta de una base de datos centralizada también dificulta identificar los productos más vendidos, verificar el movimiento de un producto y detectar a tiempo los niveles mínimos de stock. Como consecuencia, pueden presentarse compras innecesarias, falta de productos para la venta o pérdidas por productos vencidos o deteriorados.</p>
+
+          <ul>
+            <li><strong>Gestión de pedidos:</strong> La empresa carece de un mecanismo centralizado para la recepción, registro y seguimiento de órdenes de compra. Los pedidos se gestionan por canales informales sin trazabilidad, historial de cliente ni integración con el inventario, generando errores, duplicaciones y una experiencia deficiente para el cliente.</li>
+            <li><strong>Control de inventario:</strong> El vendedor registra diariamente la disponibilidad de productos en papel, sin vinculación con el canal de ventas en línea. Esta desconexión provoca pedidos de productos no disponibles y ausencia de datos históricos para planificar la producción.</li>
+            <li><strong>Facturación y cumplimiento fiscal:</strong> La empresa emite comprobantes de pago de forma manual, sin integración con un sistema de facturación electrónica conforme a la normativa del Servicio de Impuestos Nacionales (SIN) de Bolivia, exponiendo al negocio a riesgos regulatorios.</li>
+            <li><strong>Métodos de pago:</strong> La ausencia de integración con pasarelas de pago electrónicas limita las transacciones al efectivo en el punto de venta, excluyendo a consumidores que prefieren modalidades de pago digital.</li>
+          </ul>
+
+          <h3 class="doc-h2" id="arbol-problemas">
+            <span class="doc-num">4</span>
+            Árbol de Problemas
+          </h3>
+
+          <p>Con el propósito de determinar con precisión las relaciones de causa y efecto que convergen en la situación problemática, se aplicó la técnica del árbol de problemas. Este análisis permite identificar las causas raíces —directas e indirectas— que originan el problema central, así como las consecuencias sistémicas que este provoca en la gestión operativa y comercial de la empresa.</p>
+
+          <figure class="doc-figure">
+            <div class="doc-figure__header">
+              <i class="fa-solid fa-sitemap" aria-hidden="true"></i>
+              <span class="doc-figure__header-label">Figura 1</span>
+            </div>
+            <div class="doc-figure__img-wrap">
+              <img src="static/img/arbol_problemas.png" alt="Árbol de Problemas del Sistema de Ventas" loading="lazy">
+            </div>
+            <figcaption>
+              <strong>Figura 1.</strong> Árbol de Problemas del Sistema de Ventas — Panaderia y Pasteleria Dulce Sabor.
+            </figcaption>
+          </figure>
+
+          <h3 class="doc-h2" id="formulacion">
+            <span class="doc-num">5</span>
+            Formulación del Problema
+          </h3>
+
+          <div class="doc-blockquote">
+            <div class="doc-bq-label"><i class="fa-solid fa-quote-left"></i> Problema Central de Investigación</div>
+            <p>¿Cómo diseñar un Sistema de Gestión de Ventas e Inventario que permita a la Panadería y Pastelería Dulce Sabor registrar sus ventas, controlar la disponibilidad de productos y generar reportes oportunos para apoyar la gestión del negocio?</p>
+          </div>
+
+          <h5 class="doc-h4">Problemas secundarios</h5>
+          <ul>
+            <li>¿Qué información debe registrar el sistema para cada producto, venta y movimiento de inventario?</li>
+            <li>¿Qué actores interactúan con el sistema y qué operaciones requieren?</li>
+            <li>¿Cómo se relacionan los procesos de venta, actualización de stock y generación de reportes?</li>
+            <li>¿Qué diagramas estructurados y orientados a objetos permiten documentar la solución propuesta?</li>
+          </ul>
+
+          <h3 class="doc-h2" id="proposito">
+            <span class="doc-num">6</span>
+            Propósito del Estudio
+          </h3>
+
+          <h4 class="doc-h3">6.1 Objetivo General</h4>
+          <div class="doc-callout doc-callout--gold">
+            <div class="doc-callout__icon"><i class="fa-solid fa-bullseye"></i></div>
+            <div class="doc-callout__body">
+              <div class="doc-callout__title">Objetivo General</div>
+              <p>Diseñar un Sistema de Gestión de Ventas e Inventario para la Panadería y Pastelería Dulce Sabor, aplicando análisis estructurado y análisis orientado a objetos con UML, para mejorar el registro de operaciones y el control de productos.</p>
+            </div>
+          </div>
+
+          <h4 class="doc-h3">6.2 Objetivos Específicos</h4>
+          <ul>
+            <li>Identificar los procesos actuales relacionados con ventas, productos, compras e inventario.</li>
+            <li>Definir los requisitos funcionales y no funcionales del sistema propuesto.</li>
+            <li>Modelar el sistema mediante diagramas de contexto, flujo de datos, flujogramas y modelo entidad relación.</li>
+            <li>Elaborar diagramas UML de casos de uso, clases, secuencia, actividades y estados.</li>
+            <li>Planificar la implementación del proyecto de forma iterativa e incremental.</li>
+          </ul>
+
+          <h3 class="doc-h2" id="metodo">
+            <span class="doc-num">7</span>
+            Método, Medios e Instrumentos de Investigación
+          </h3>
+
+          <h4 class="doc-h3">7.1 Enfoque y tipo de investigacion</h4>
+          <p>Se empleará un enfoque aplicado y descriptivo. Es aplicado porque busca plantear una solución concreta a una necesidad de gestión; es descriptivo porque identifica cómo se ejecutan las actividades actuales y qué datos intervienen en ellas. La propuesta se organiza mediante un ciclo iterativo e incremental: en cada incremento se revisa una parte del sistema, se valida con los usuarios y se incorpora al siguiente avance.</p>
+
+          <h4 class="doc-h3">7.2 Tecnicas de recoleccion de informacion</h4>
+
+          <figure class="doc-figure">
+            <div class="doc-figure__header">
+              <i class="fa-solid fa-sitemap" aria-hidden="true"></i>
+              <span class="doc-figure__header-label">Figura 2</span>
+            </div>
+            <div class="doc-figure__img-wrap">
+              <img src="static/img/tecnicas_recoleccion_info.png" loading="lazy">
+            </div>
+          </figure>
+
+          <h4 class="doc-h3">7.3 Poblacion y muestra</h4>
+
+          <p>La población de estudio está constituida por los participantes directos del proceso comercial de Dulce Sabor: propietario o administrador, cajeros, personal de producción y proveedores cuando corresponda. Debido al tamaño reducido de la organización, se propone una muestra censal, es decir, entrevistar a todos los responsables de las actividades cubiertas por el sistema.</p>
+
+          <h4 class="doc-h3">7.4 Medios tecnologicos</h4>
+
+          <ul>
+            <li>Computador con sistema operativo y navegador web.</li>
+            <li>Base de datos relacional para conservar información de productos y ventas.</li>
+            <li>Herramienta de modelado UML para elaborar los diagramas.</li>
+            <li>Editor de documentos para el informe y publicación web o blog del proyecto.</li>
+          </ul>
+
+          <h3 class="doc-h2" id="justificacion">
+            <span class="doc-num">8</span>
+            Justificacion y Alcance
+          </h3>
+
+          <h4 class="doc-h3">8.1 Justificación</h4>
+
+          <p>La propuesta se justifica porque un registro integrado reduce errores de transcripción, brinda visibilidad inmediata de las existencias y permite generar reportes sin recuentos manuales. El sistema también favorece una atención más rápida, ya que el cajero puede localizar productos y calcular el total desde una sola interfaz. Para el administrador, la información acumulada permite comparar períodos y priorizar la reposición de productos con mayor rotación.</p>
+
+          <h4 class="doc-h3">8.2 Alcance Funcional</h4>
+          <ul>
+            <li><strong>Módulo de Seguridad y usuarios:</strong> Inicio de sesión, autenticación, roles y permisos de administrador y cajero.</li>
+            <li><strong>Módulo de Productos:</strong> Registrar, editar, consultar, activar o desactivar productos y categorías.</li>
+            <li><strong>Módulo de Ventas:</strong> Registrar pedido, consultar cliente, calcular total e impuestos y emitir comprobante o factura.</li>
+            <li><strong>Módulo de Inventario:</strong> Controlar entradas y salidas, mermas, stock mínimo y fechas de vencimiento.</li>
+            <li><strong>Módulo de Proveedores:</strong> Registrar pedidos y entregas de insumos o productos.</li>
+            <li><strong>Módulo de Reportes:</strong> Ventas diarias y mensuales, productos más vendidos y alertas de stock mínimo.</li>
+          </ul>
+
+          <h3 class="doc-h2" id="planificacion">
+            <span class="doc-num">9</span>
+            Planificación de Actividades
+          </h3>
+
+          <p>El proyecto se organizará en ocho semanas. Cada incremento produce un resultado revisable: primero se investigan los procesos, después se obtienen requisitos, se elaboran los modelos, se realiza un prototipo y finalmente se documentan las pruebas. La publicación incremental permitirá mostrar avances y recibir observaciones antes de la defensa.</p>
+
+          <figure class="doc-figure">
+            <div class="doc-figure__header">
+              <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+              <span class="doc-figure__header-label">Figura 3</span>
+            </div>
+            <div class="doc-figure__img-wrap">
+              <img src="static/img/planificacion_actividades.png" loading="lazy">
+            </div>
+            <figcaption>
+              <strong>Figura 3.</strong> Planificación del Proyecto Sistema Integral de Ventas Panaderia y Pasteleria Dulce Sabor.
+              <em>Nota.</em> Las fechas son referenciales y están sujetas a ajuste en función de la velocidad del equipo. Elaboración propia (2026).
+            </figcaption>
+          </figure>
+
+        </div>
+      </article>
+
+
+      <!-- ══════════════════════════════════════════
+           CAPÍTULO II — ANÁLISIS ESTRUCTURADO
+      ══════════════════════════════════════════ -->
+      <article class="doc-chapter" id="marco-teorico">
+
+        <div class="doc-chapter-header">
+          <div class="doc-chapter-eyebrow">
+            <i class="fa-solid fa-earth-americas"></i>
+            Capítulo II
+          </div>
+          <h2 class="doc-chapter-title">
+            <span class="doc-chapter-num">II.</span>
+            Análisis y Diseño Estructurado
+          </h2>
+          <div class="doc-chapter-rule"></div>
+        </div>
+
+        <div class="doc-body">
+
+          <h3 class="doc-h2">
+            <span class="doc-num">1</span>
+            Introducción al Paradigma Estructurado
+          </h3>
+
+          <p>El análisis y diseño estructurado es un paradigma de modelado de sistemas de información que concibe al software como un conjunto de procesos que transforman flujos de datos de entrada en flujos de datos de salida. Formalizado por Yourdon y DeMarco (1979) mediante los Diagramas de Flujo de Datos (DFD) y la notación de Gane y Sarson (1979), este paradigma permite representar los procesos del negocio con independencia de la tecnología de implementación, facilitando la comunicación entre el equipo técnico y los usuarios del sistema.</p>
+
+          <h3 class="doc-h2" id="modelo-ambiental" style="margin-top:3rem">
+            <span class="doc-num">2</span>
+            Modelo Ambiental del Sistema
+          </h3>
+
+          <h4 class="doc-h3">2.1 Proposito del sistema</h4>
+
+          <p>El propósito del “Sistema de Gestión de Ventas e Inventario para la Panadería y Pastelería Dulce Sabor” es permitir el registro, control y seguimiento de las operaciones relacionadas con la venta de productos y la administración de su inventario.</p>
+
+          <p>El sistema busca centralizar la información de los productos, ventas, existencias, movimientos de inventario, proveedores y usuarios, permitiendo que la información sea registrada y consultada de manera organizada.</p>
+
+          <p>Mediante el sistema, el cajero podrá registrar las ventas, consultar los productos disponibles, verificar el stock y generar comprobantes. Por otra parte, el administrador podrá gestionar productos y categorías, controlar las existencias, registrar movimientos de inventario, consultar las ventas y obtener reportes para apoyar la toma de decisiones.</p>
+
+          <h4 class="doc-h3">2.2 Lista de acontecimientos o eventos relevantes</h4>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Nº</th>
+                  <th>Acontecimiento o evento</th>
+                  <th>Actor que lo genera</th>
+                  <th>Respuesta del sistema</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr><td>1</td><td>El usuario inicia sesión</td><td>Administrador / Cajero</td><td>El sistema verifica las credenciales y permite el acceso según el rol.</td></tr>
+                  <tr><td>2</td><td>Se registra un nuevo producto</td><td>Administrador</td><td>El sistema almacena los datos del producto y su stock inicial.</td></tr>
+                  <tr><td>3</td><td>Se modifica la información de un producto</td><td>Administrador</td><td>El sistema actualiza los datos del producto.</td></tr>
+                  <tr><td>4</td><td>Se consulta un producto</td><td>Administrador / Cajero</td><td>El sistema muestra la información y disponibilidad del producto.</td></tr>
+                  <tr><td>5</td><td>Se realiza una venta</td><td>Cajero</td><td>El sistema registra la venta, calcula el total y actualiza el inventario.</td></tr>
+                  <tr><td>6</td><td>Se busca un producto durante una venta</td><td>Cajero</td><td>El sistema consulta el catálogo y muestra los productos disponibles.</td></tr>
+                  <tr><td>7</td><td>Se confirma el pago</td><td>Cajero</td><td>El sistema registra el pago y genera el comprobante correspondiente.</td></tr>
+                  <tr><td>8</td><td>Se registra una entrada de productos</td><td>Administrador</td><td>El sistema incrementa el stock y registra el movimiento.</td></tr>
+                  <tr><td>9</td><td>Se registra una salida de productos</td><td>Administrador</td><td>El sistema disminuye el stock y registra el movimiento.</td></tr>
+                  <tr><td>10</td><td>Se registra una merma</td><td>Administrador</td><td>El sistema actualiza el stock y registra la pérdida.</td></tr>
+                  <tr><td>11</td><td>El stock alcanza el mínimo establecido</td><td>Sistema</td><td>El sistema genera una alerta de stock mínimo.</td></tr>
+                  <tr><td>12</td><td>Se registra una compra o reposición</td><td>Administrador</td><td>El sistema registra el ingreso y actualiza las existencias.</td></tr>
+                  <tr><td>13</td><td>Se registra un proveedor</td><td>Administrador</td><td>El sistema almacena la información del proveedor.</td></tr>
+                  <tr><td>14</td><td>Se consulta el inventario</td><td>Administrador</td><td>El sistema muestra las existencias y movimientos registrados.</td></tr>
+                  <tr><td>15</td><td>Se solicita un reporte de ventas</td><td>Administrador</td><td>El sistema genera el reporte correspondiente al período solicitado.</td></tr>
+                  <tr><td>16</td><td>Se consultan los productos más vendidos</td><td>Administrador</td><td>El sistema procesa las ventas y muestra los productos con mayor movimiento.</td></tr>
+                  <tr><td>17</td><td>Un producto se aproxima a su vencimiento</td><td>Sistema</td><td>El sistema genera una alerta sobre el producto.</td></tr>
+                  <tr><td>18</td><td>Se desactiva un producto</td><td>Administrador</td><td>El sistema cambia el estado del producto para evitar su utilización en nuevas ventas.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 class="doc-h3">2.3 DFD Nivel 0 — Diagrama de Contexto</h4>
+
+          <p>El Diagrama de Contexto (Nivel 0) constituye el modelo ambiental global del sistema de ventas de la Panadería y Pastelería Dulce Sabor.</p>
+
+          <figure class="doc-figure">
+            <div class="doc-figure__header">
+              <i class="fa-solid fa-earth-americas" aria-hidden="true"></i>
+              <span class="doc-figure__header-label">Figura 4</span>
+              <span class="doc-figure__header-sub">Notación Yourdon-DeMarco · Elaboración propia (2026)</span>
+            </div>
+            <div class="doc-figure__img-wrap">
+              <img src="static/img/DiagramaDeContexto.png" alt="DFD Nivel 0 — Diagrama de Contexto" loading="lazy">
+            </div>
+            <figcaption>
+              <strong>Figura 4.</strong> DFD Nivel 0 — Diagrama de Contexto del Sistema.
+            </figcaption>
+          </figure>
+
+          <h4 class="doc-h3">2.4 DFD Nivel 1 — Descomposición Global del Sistema</h4>
+
+          <figure class="doc-figure">
+            <div class="doc-figure__header">
+              <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
+              <span class="doc-figure__header-label">Figura 5</span>
+              <span class="doc-figure__header-sub">Notación Yourdon-DeMarco · Elaboración propia (2026)</span>
+            </div>
+            <div class="doc-figure__img-wrap">
+              <img src="static/img/dfd_nvl0.png" alt="DFD Nivel 1 — Descomposición" loading="lazy">
+            </div>
+            <figcaption>
+              <strong>Figura 5.</strong> DFD Nivel 1 — Descomposición en Módulos Principales.
+            </figcaption>
+          </figure>
+
+          <!-- ── MODELO COMPORTAMIENTO ── -->
+          <h3 class="doc-h2" id="modelo-comportamiento" style="margin-top:3rem">
+            <span class="doc-num">3</span>
+            Análisis del Comportamiento de la Gestión de Ventas
+          </h3>
+
+          <figure class="doc-figure">
+            <div class="doc-figure__header">
+              <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+              <span class="doc-figure__header-label">Figura 6</span>
+              <span class="doc-figure__header-sub">Notación Yourdon-DeMarco · Elaboración propia (2026)</span>
+            </div>
+            <div class="doc-figure__img-wrap">
+              <img src="static/img/DFD_nvl1.png" alt="DFD Nivel 1 — Gestion de Ventas" loading="lazy">
+            </div>
+            <figcaption>
+              <strong>Figura 6.</strong> DFD Nivel 1 — Gestion de Ventas (Proceso 1.0).
+            </figcaption>
+          </figure>
+
+        </div>
+      </article>
+
+      <!-- ══════════════════════════════════════════
+           CAPÍTULO III — ANÁLISIS OO
+      ══════════════════════════════════════════ -->
+      <article class="doc-chapter" id="modelo-objetos">
+        <div class="doc-chapter-header">
+          <div class="doc-chapter-eyebrow">
+            <i class="fa-solid fa-diagram-project"></i>
+            Capítulo III
+          </div>
+          <h2 class="doc-chapter-title">
+            <span class="doc-chapter-num">III.</span>
+            Análisis y Diseño Orientado a Objetos
+          </h2>
+          <div class="doc-chapter-rule"></div>
+        </div>
+        <div class="doc-body">
+
+          <h3 class="cap3-h2"><span class="num-badge">1</span>Introducción al Paradigma Orientado a Objetos</h3>
+          <div class="cap3-body">
+            <p>El análisis y diseño orientado a objetos (AOO/DOO) es un paradigma de ingeniería de software que modela los sistemas de información como conjuntos de objetos que encapsulan datos (atributos) y comportamiento (métodos)...</p>
+          </div>
+
+          <div class="cap3-divider" aria-hidden="true"></div>
+
+          <h3 class="cap3-h2" id="clases-oo"><span class="num-badge">2</span>Diagrama de Clases</h3>
+          <div class="cap3-body">
+            <p>El Diagrama de Clases define la estructura estática del sistema de ventas en línea.</p>
+          </div>
+
+          <figure class="cap3-figure" aria-label="Figura 7 — Diagrama de Clases del Sistema">
+            <div class="cap3-figure-header">
+              <i class="fa-solid fa-cogs" aria-hidden="true"></i>
+              <span class="cap3-figure-header-label">Figura 7</span>
+            </div>
+            <div class="cap3-figure-img-wrap">
+              <img src="static/img/DiagramaDeClases.jpeg" alt="Diagrama de Clases" loading="lazy">
+            </div>
+          </figure>
+
+        </div>
+      </article>
+
+    </main>
+  </div>
+
+  <footer id="contacto">
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Panaderia y Pasteleria Dulce Sabor · Informe Técnico — Sistema Integral de Ventas · UMSA Carrera de Informática</p>
+      <p class="footer-badge">HECHO EN BOLIVIA 🇧🇴</p>
+    </div>
+  </footer>
+
+  <script>
+  let menuVisible = false;
+  function mostrarOcultarMenu() {
+    if (menuVisible) {
+      document.getElementById('nav').classList.remove('responsive');
+      menuVisible = false;
+    } else {
+      document.getElementById('nav').classList.add('responsive');
+      menuVisible = true;
+    }
+  }
+
+  (function () {
+    const header = document.getElementById('main-header');
+    if (!header) return;
+    window.addEventListener('scroll', function () {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  })();
+
+  (function () {
+    const fill = document.getElementById('docProgressFill');
+    const bar  = document.getElementById('docProgressBar');
+    if (!fill) return;
+    window.addEventListener('scroll', function () {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0;
+      fill.style.width = pct + '%';
+      bar.setAttribute('aria-valuenow', Math.round(pct));
+    }, { passive: true });
+  })();
+
+  (function () {
+    document.querySelectorAll('.doc-toc-chapter > a').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        const chapter = this.closest('.doc-toc-chapter');
+        const isOpen  = chapter.classList.contains('toc-open');
+        document.querySelectorAll('.doc-toc-chapter').forEach(function (c) {
+          c.classList.remove('toc-open');
+        });
+        if (!isOpen) chapter.classList.add('toc-open');
+      });
+    });
+  })();
+
+  (function () {
+    const anchors  = ['generalidades','introduccion','antecedentes','planteamiento',
+                      'arbol-problemas','formulacion','proposito','metodo','justificacion','planificacion',
+                      'marco-teorico','modelo-ambiental','modelo-comportamiento',
+                      'sprint3-interaccion','modelo-objetos','casos-uso-oo','clases-oo'];
+    const tocLinks = document.querySelectorAll('.doc-toc-section li a, .doc-toc-chapter > a');
+
+    function onScroll() {
+      let current = '';
+      anchors.forEach(function (id) {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - 130) current = id;
+      });
+      tocLinks.forEach(function (link) {
+        link.classList.remove('toc-active');
+        const href = link.getAttribute('href');
+        if (href === '#' + current) {
+          link.classList.add('toc-active');
+          const chapter = link.closest('.doc-toc-chapter');
+          if (chapter) {
+            document.querySelectorAll('.doc-toc-chapter').forEach(function (c) {
+              c.classList.remove('toc-open');
+            });
+            chapter.classList.add('toc-open');
+          }
+        }
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
+  (function () {
+    const btn     = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('docSidebar');
+    const icon    = document.getElementById('sidebarToggleIcon');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      sidebar.classList.toggle('collapsed');
+      const isCollapsed = sidebar.classList.contains('collapsed');
+      btn.setAttribute('aria-expanded', !isCollapsed);
+      icon.className = isCollapsed ? 'fa-solid fa-chevron-down' : 'fa-solid fa-chevron-up';
+      icon.style.fontSize = '0.7rem';
+      icon.style.color    = 'var(--gold-400)';
+    });
+  })();
+  </script>
+  <script src="./static/js/nav-dropdown-fix.js"></script>
+</body>
+</html>

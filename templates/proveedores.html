@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Proveedores — Panadería y Pastelería Dulce Sabor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="./static/css/estilo.css">
+  <link rel="stylesheet" href="./static/css/nav-mobile-fix.css">
+</head>
+<body>
+
+  <!-- HEADER Y NAVBAR -->
+  <section id="inicio">
+    <header id="main-header">
+      <div class="contenido-header">
+        <div class="logo">
+          <h1>PANADERIA Y PASTELERIA DULCE SABOR</h1>
+        </div>
+        <nav id="nav">
+          <ul>
+            <li><a href="/"><i class="fa-solid fa-house"></i> <span>Inicio</span></a></li>
+            <li><a href="menu.html"><i class="fa-solid fa-cake-candles"></i> <span>Menú</span></a></li>
+            <li><a href="ventas.html"><i class="fa-solid fa-receipt"></i> <span>Ventas</span></a></li>
+            <li><a href="compras.html"><i class="fa-solid fa-truck-ramp-box"></i> <span>Compras</span></a></li>
+            <li><a href="movimientos.html"><i class="fa-solid fa-arrows-rotate"></i> <span>Inventario</span></a></li>
+            <li><a href="clientes.html"><i class="fa-solid fa-users"></i> <span>Clientes</span></a></li>
+            <li><a href="proveedores.html" class="active"><i class="fa-solid fa-truck-field"></i> <span>Proveedores</span></a></li>
+          </ul>
+        </nav>
+        <div class="nav-responsive" id="bar" onclick="mostrarOcultarMenu()" aria-label="Menú">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </div>
+    </header>
+  </section>
+
+  <!-- HERO -->
+  <div class="informe-hero" style="min-height: 320px; padding-top: 130px; padding-bottom: 40px;">
+    <div class="informe-hero__glow" aria-hidden="true"></div>
+    <div class="informe-hero__content">
+      <div class="informe-hero__kicker">
+        <i class="fa-solid fa-handshake" aria-hidden="true"></i> Cadena de Suministro
+      </div>
+      <h1 class="informe-hero__title" style="font-size: 2.3rem;">
+        Directorio de <em>Proveedores</em>
+      </h1>
+      <p class="informe-hero__sub">
+        Gestión de distribuidores de insumos y materia prima.
+      </p>
+    </div>
+  </div>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main style="max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem;">
+    <div class="sucursal-header" style="margin-bottom: 2.5rem;">
+      <div class="section-eyebrow">Aliados Comerciales</div>
+      <h2 class="sucursal-title">Lista de <em>Proveedores</em></h2>
+    </div>
+
+    {% if proveedores %}
+    <article class="suc-card" style="width: 100%; padding: 1.5rem;">
+      <div style="overflow-x: auto;">
+        <table class="doc-table" style="width: 100%;">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Razón Social</th>
+              <th>Teléfono</th>
+              <th>Dirección</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for p in proveedores %}
+            <tr>
+              <td><strong>#{{ p.id_proveedor }}</strong></td>
+              <td><strong style="color: #d4af37;">{{ p.razon_social }}</strong></td>
+              <td><i class="fa-solid fa-phone" style="color: #81c784; margin-right: 5px;"></i> {{ p.telefono }}</td>
+              <td style="color: #ccc;"><i class="fa-solid fa-location-dot" style="color: #e57373; margin-right: 5px;"></i> {{ p.direccion }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </article>
+    {% else %}
+      <div style="text-align: center; padding: 3rem; background: rgba(255, 255, 255, 0.02); border-radius: 8px;">
+        <i class="fa-solid fa-truck-slash" style="font-size: 3rem; color: #d4af37; margin-bottom: 1rem;"></i>
+        <p style="font-size: 1.1rem; color: #ccc;">No se encontraron proveedores registrados en la base de datos.</p>
+      </div>
+    {% endif %}
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="contacto">
+    <div class="footer-inner">
+      <div class="footer-col footer-col--brand">
+        <div class="footer-brand-name">DULCE SABOR</div>
+        <div class="footer-gold-bar"></div>
+        <p class="footer-brand-desc">Panadería artesanal y repostería fina desde La Paz.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Panadería y Pastelería Dulce Sabor · Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <script src="./static/js/script.js"></script>
+  <script src="./static/js/nav-dropdown-fix.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Ventas — Panadería y Pastelería Dulce Sabor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="./static/css/estilo.css">
+  <link rel="stylesheet" href="./static/css/nav-mobile-fix.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       HEADER Y NAVBAR
+  ════════════════════════════════════════ -->
+  <section id="inicio">
+    <header id="main-header">
+      <div class="contenido-header">
+
+        <div class="logo">
+          <h1>PANADERIA Y PASTELERIA DULCE SABOR</h1>
+        </div>
+
+        <nav id="nav">
+          <ul>
+            <li>
+              <a href="/">
+                <i class="fa-solid fa-house"></i>
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li>
+              <a href="menu.html">
+                <i class="fa-solid fa-cake-candles"></i>
+                <span>Menú</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="ventas.html" class="active">
+                <i class="fa-solid fa-receipt"></i>
+                <span>Ventas</span>
+              </a>
+            </li>
+            <li>
+              <a href="compras.html">
+                <i class="fa-solid fa-truck-ramp-box"></i>
+                <span>Compras</span>
+              </a>
+            </li>
+            <li><a href="movimientos.html"><i class="fa-solid fa-arrows-rotate"></i> <span>Inventario</span></a></li>
+            <li><a href="clientes.html"><i class="fa-solid fa-users"></i> <span>Clientes</span></a></li>
+            <li><a href="proveedores.html"><i class="fa-solid fa-truck-field"></i> <span>Proveedores</span></a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-responsive" id="bar" onclick="mostrarOcultarMenu()" aria-label="Menú">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+
+      </div>
+    </header>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       HERO DE VENTAS
+  ════════════════════════════════════════ -->
+  <div class="informe-hero" style="min-height: 320px; padding-top: 130px; padding-bottom: 40px;">
+    <div class="informe-hero__glow" aria-hidden="true"></div>
+    <div class="informe-hero__content">
+      <div class="informe-hero__kicker">
+        <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
+        Módulo de Transacciones
+      </div>
+      <h1 class="informe-hero__title" style="font-size: 2.3rem;">
+        Historial de <em>Ventas y Detalles</em>
+      </h1>
+      <p class="informe-hero__sub">
+        Consulta de transacciones registradas, clientes, métodos de pago y desglose por producto.
+      </p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       CONTENIDO PRINCIPAL: LISTA DE VENTAS
+  ════════════════════════════════════════ -->
+  <main style="max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem;">
+
+    <div class="sucursal-header" style="margin-bottom: 2.5rem;">
+      <div class="section-eyebrow">Transacciones de la BD</div>
+      <h2 class="sucursal-title">Registro de <em>Ventas</em></h2>
+    </div>
+
+    {% if ventas %}
+      {% for v in ventas %}
+      <article class="suc-card" style="margin-bottom: 2rem; width: 100%;">
+        <div style="padding: 1.5rem; background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid rgba(212, 175, 55, 0.2); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+          <div>
+            <h3 style="font-size: 1.25rem; color: #d4af37; margin-bottom: 0.3rem;">
+              <i class="fa-solid fa-receipt"></i> Venta #{{ v.id_venta }}
+            </h3>
+            <p style="font-size: 0.9rem; color: #ccc;">
+              <i class="fa-solid fa-user"></i> <strong>Cliente:</strong> {{ v.cliente }} &nbsp;|&nbsp;
+              <i class="fa-solid fa-user-tie"></i> <strong>Atendido por:</strong> {{ v.cajero }}
+            </p>
+          </div>
+          <div style="text-align: right;">
+            <p style="font-size: 0.9rem; color: #ccc;">
+              <i class="fa-solid fa-calendar-day"></i> {{ v.fecha }} &nbsp;|&nbsp;
+              <i class="fa-solid fa-wallet"></i> {{ v.metodo_pago }}
+            </p>
+            <span class="suc-card-badge" style="position: static; display: inline-block; margin-top: 0.4rem;">
+              Total: Bs. {{ "%.2f"|format(v.total) }}
+            </span>
+          </div>
+        </div>
+
+        <!-- TABLA DE DETALLES DE ESTA VENTA -->
+        <div style="padding: 1.2rem; overflow-x: auto;">
+          <h4 style="font-size: 0.95rem; color: #d4af37; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">
+            <i class="fa-solid fa-list-check"></i> Detalle de la Venta
+          </h4>
+          <table class="doc-table" style="width: 100%;">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th style="text-align: center;">Cantidad</th>
+                <th style="text-align: right;">Precio Unitario</th>
+                <th style="text-align: right;">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for d in v.detalles %}
+              <tr>
+                <td><strong>{{ d[1] }}</strong></td>
+                <td style="text-align: center;">{{ d[2] }}</td>
+                <td style="text-align: right;">Bs. {{ "%.2f"|format(d[3]) }}</td>
+                <td style="text-align: right; color: #d4af37;">Bs. {{ "%.2f"|format(d[4]) }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </article>
+      {% endfor %}
+    {% else %}
+      <div style="text-align: center; padding: 3rem; background: rgba(255, 255, 255, 0.02); border-radius: 8px;">
+        <i class="fa-solid fa-folder-open" style="font-size: 3rem; color: #d4af37; margin-bottom: 1rem;"></i>
+        <p style="font-size: 1.1rem; color: #ccc;">No se encontraron ventas registradas en la base de datos.</p>
+      </div>
+    {% endif %}
+
+  </main>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer id="contacto">
+    <div class="footer-inner">
+      <div class="footer-col footer-col--brand">
+        <div class="footer-brand-name">DULCE SABOR</div>
+        <div class="footer-gold-bar"></div>
+        <p class="footer-brand-desc">
+          Panadería artesanal y repostería fina. Tradición, frescura y dulzura en cada receta desde La Paz.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-col-title">Navegación</h3>
+        <nav aria-label="Navegación del pie de página">
+          <a href="/" class="footer-link">Inicio</a>
+          <a href="menu.html" class="footer-link">Menú</a>
+          <a href="ventas.html" class="footer-link">Ventas</a>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-col-title">Contacto</h3>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          <div>
+            Calle Colón N.° 463<br>
+            Calle 23 N.° 7727<br>
+            Av. Landaeta N.° 1041
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-globe" aria-hidden="true"></i>
+          <span>La Paz, Bolivia</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">
+        © 2026 Panadería y Pastelería Dulce Sabor · Todos los derechos reservados
+      </p>
+      <p class="footer-badge">HECHO EN BOLIVIA 🇧🇴</p>
+    </div>
+  </footer>
+
+  <script src="./static/js/script.js"></script>
+  <script src="./static/js/nav-dropdown-fix.js"></script>
+</body>
+</html>
